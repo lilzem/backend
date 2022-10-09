@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 class CostRecord extends Model
 {
     protected $fillable = [
-        'total',
+        'cost_category_id',
+        'user_id',
+        'total'
     ];
 
     const UPDATED_AT = null;

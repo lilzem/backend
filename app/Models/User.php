@@ -13,4 +13,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
     ];
+
+    public $timestamps = false;
+
+    public function costRecords() {
+        return $this->hasMany(CostRecord::class);
+    }
 }
