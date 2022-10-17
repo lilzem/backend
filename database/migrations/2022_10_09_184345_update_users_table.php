@@ -14,14 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn([
-                'email',
-                'email_verified_at',
-                'password'
-            ]);
-            // $table->dropUnique('users_email_unique');
-            $table->dropRememberToken();
-            $table->dropTimestamps();
+            $table->string('email')->nullable()->change();
+            $table->dropUnique('users_email_unique');
         });
     }
 
@@ -33,11 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->unique()->after('name');
-            $table->timestamp('email_verified_at')->nullable()->after('email');
-            $table->string('password')->after('email_verified_at');
-            $table->rememberToken()->after('password');
-            $table->timestamps();
+            $table->string('email')->unique()->nullable(false)->change();
         });
     }
 };
